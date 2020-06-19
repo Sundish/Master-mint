@@ -4,3 +4,4 @@ A Mastermind game in c++
 ## The Team
 - Sundish jr.
 - CraxazMan
+- MtZandy
