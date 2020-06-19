@@ -1,7 +1,8 @@
-#include <iostream>
+#include "graphfx.hpp"
 
 
 int main (void)
 {
-	return 0;
+     std::cout << "██\n";
+     return 0;
 }
