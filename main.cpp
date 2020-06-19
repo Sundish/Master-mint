@@ -3,6 +3,6 @@
 
 int main (void)
 {
-     std::cout << "██\n";
+     full_table({"abcd", "dcba", "afdc"}, 10);
      return 0;
 }
