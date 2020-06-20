@@ -3,6 +3,6 @@
 
 int main (void)
 {
-     full_table({"abcd", "dcba", "afdc"}, 10);
+     print_full_table({"aefd", "bcfe", "abde"}, 10);
      return 0;
 }
