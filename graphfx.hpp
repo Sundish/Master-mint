@@ -70,25 +70,75 @@ std::string draw_empty_row(void)
      return "\033[1;49;30m█\033[0m  \033[1;49;30m█\033[0m  \033[1;49;30m█\033[0m  \033[1;49;30m█\033[0m  \033[1;49;30m█\033[0m";
 }
 
-void print_full_table(std::vector<std::string> full_sequence, int max_chances)
+std::string stringme (int clue1, int clue2, int clue3, int clue4)
+{
+     std::string convstr;
+     convstr = (char)(clue2 + 48) + (char)(clue3 + 48) + (char)(clue4 + 48) + (char)(clue1 + 48);
+     return convstr;
+}
+
+void print_clue_mrow (std::string clue_sequence)
+{
+     int for_adder = 1;
+     std::cout << " ";
+     std::for_each(clue_sequence.begin(),
+                   clue_sequence.end(), [&](char single_clue)
+                                             {switch (single_clue){
+                                                  case '0':for_adder++;break;
+                                                  case '1':std::cout << "\033[1;49;30m█\033[0m";break;
+                                                  case '2':std::cout << "\033[1;49;31m█\033[0m";break;}});
+     for (int i = 0; i < for_adder; i++)
+     {
+          std::cout << " ";
+     }
+}
+
+void print_empty_mrow (void)
+{
+     for (int e = 0; e < 6; e++)
+     {
+          std::cout << " ";
+     }
+}
+
+void print_full_table(std::vector<std::string> full_sequence, std::vector<std::string> clue_sequence, int max_chances)
 {
      int number_of_empty_rows = max_chances - full_sequence.size();
-     int help_counter;
+     int help_counter, sequence_counter;
      help_counter = 0;
-     std::cout << "\t" << draw_between_row() << "\n";
+     sequence_counter = 0;
+     print_empty_mrow();
+     std::cout << draw_between_row() << "\n";
      std::for_each(full_sequence.begin(), full_sequence.end(),
                    [&](std::string sequence)
-                        {std::cout << "\t" << draw_full_row(sequence);
+                        {print_clue_mrow(clue_sequence.at(sequence_counter));
+                             std::cout << draw_full_row(sequence);
                              if (help_counter < 6)
                                   std::cout << draw_help(help_counter) << "\n";
                              help_counter++;
-                             std::cout << "\t" << draw_between_row();
+                             print_empty_mrow();
+                             std::cout << draw_between_row();
                              if (help_counter < 6)
                                   std::cout << draw_help(help_counter) << "\n";
-                             help_counter++;});
+                             help_counter++;
+                             sequence_counter++;});
      for (int iter = 0; iter < number_of_empty_rows; iter++)
      {
-          std::cout << "\t" << draw_empty_row() << "\n";
-          std::cout << "\t" << draw_between_row() << "\n";
+          print_empty_mrow();
+          std::cout << draw_empty_row() << "\n";
+          print_empty_mrow();
+          std::cout << draw_between_row() << "\n";
      }
+}
+
+void mastermind_rules(void)
+{
+     std::cout << "You are in the belly of A.M.\n";
+     std::cout << "The only way to escape is to win\n";
+     std::cout << "You got 10 turns..." << "\n";
+     std::cout << "To enter a 4 number combination" << "\n";
+     std::cout << "from a to f, for each number in the right place" << "\n";
+     std::cout << "you get a 'r' and a 'w' for each number in the sequence\n";
+     std::cout << "But in the wrong place.\n";
+     std::cout << std::endl;
 }
