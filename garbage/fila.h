@@ -4,8 +4,8 @@ class fila{
 		canica can[4];
 		pista pis[4];
 		pista val[4];
-
-		void ordenarPista(pista p[4]){
+        int meco[4];
+		void ordenarPista(pista p[4], int meco[4]){
 			int uno = 0;
 			int dos = 0;
 			for(int i = 0; i<=3; i++){
@@ -26,6 +26,12 @@ class fila{
 			for(int i = dos; i<dos+uno; i++){
 				p[i].setColor(1);
 			}
+			meco[0]=p[0].getColor();
+			meco[1]=p[1].getColor();
+			meco[2]=p[2].getColor();
+			meco[3]=p[3].getColor();
+			//cout << "pistas  de green son: " << meco[0] << "-" << meco[1] << "-" << meco[2] << "-" << meco[3] << endl << endl;
+			//cout << "pistas  de blue son: " << p[0].getColor() << "-" << p[1].getColor() << "-" << p[2].getColor() << "-" << p[3].getColor() << endl << endl;
 		}
 	public:
 		fila(){
@@ -48,6 +54,8 @@ class fila{
 		}
 
 		bool validarFila(filaCodigo fc){
+		    int meco[4];
+		    int kaiser[4];
 			canica r[4];
 			fc.getCodigo(r);
 
@@ -76,9 +84,16 @@ class fila{
 
 
 			//Ordenar el arreglo de pistas
-			ordenarPista(pis);
+			ordenarPista(pis, meco);
 
-			cout << "pistas son: " << pis[0].getColor() << "-" << pis[1].getColor() << "-" << pis[2].getColor() << "-" << pis[3].getColor() << endl << endl;
+			//cout << "pistas son: " << pis[0].getColor() << "-" << pis[1].getColor() << "-" << pis[2].getColor() << "-" << pis[3].getColor() << endl << endl;
+			kaiser[0]=pis[0].getColor();
+			kaiser[1]=pis[1].getColor();
+			kaiser[2]=pis[2].getColor();
+			kaiser[3]=pis[3].getColor();
+
+			//cout<<kaiser[0]<<kaiser[1]<<kaiser[2]<<kaiser[3]<<endl;
+
 			if(		pis[0].getColor() == 2
 				 && pis[1].getColor() == 2
 				 && pis[2].getColor() == 2
@@ -89,4 +104,8 @@ class fila{
 			return false;
 		}
 
+    void impresionpistas(int meco[4]){
+        //cout << "pistas  de red son: " << meco[0] << "-" << meco[1] << "-" << meco[2] << "-" << meco[3] << endl << endl;
+        //cout << "pistas son: " << pis[0].getColor() << "-" << pis[1].getColor() << "-" << pis[2].getColor() << "-" << pis[3].getColor() << endl << endl;
+    }
 };

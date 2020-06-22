@@ -8,5 +8,7 @@ int main (void)
      // t.emplace_back(5);
      // std::cout << t.front() << t.back() << "\n";
      print_full_table({"aefd", "bcfe", "abde"}, {"1111", "1212", "2200"}, 10);
+     system("clear");
+     std::cout << "frcik dude";
      return 0;
 }

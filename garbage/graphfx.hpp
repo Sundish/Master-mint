@@ -26,7 +26,7 @@ std::string color_string (char what_color)
      case 'f': /* Orange Color */
           return "\033[1;49;35m██\033[0m";
      default:
-          return "ERROR";
+          return "XX";
      }
 }
 
@@ -47,7 +47,7 @@ std::string draw_help (int help_number)
      case 5: /* Orange Color */
           return "\tf = \033[1;49;35m█\033[0m";
      default:
-          return "ERROR";
+          return "XX";
      }
 }
 
@@ -68,13 +68,6 @@ std::string draw_full_row(std::string user_sequence)
 std::string draw_empty_row(void)
 {
      return "\033[1;49;30m█\033[0m  \033[1;49;30m█\033[0m  \033[1;49;30m█\033[0m  \033[1;49;30m█\033[0m  \033[1;49;30m█\033[0m";
-}
-
-std::string stringme (int clue1, int clue2, int clue3, int clue4)
-{
-     std::string convstr;
-     convstr = (char)(clue2 + 48) + (char)(clue3 + 48) + (char)(clue4 + 48) + (char)(clue1 + 48);
-     return convstr;
 }
 
 void print_clue_mrow (std::string clue_sequence)
@@ -119,20 +112,34 @@ void print_full_table(std::vector<std::string> full_sequence, std::vector<std::s
                         {print_clue_mrow(clue_sequence.at(sequence_counter));
                              std::cout << draw_full_row(sequence);
                              if (help_counter < 6)
-                                  std::cout << draw_help(help_counter) << "\n";
+                                  std::cout << draw_help(help_counter);
+                             std::cout << "\n";
                              help_counter++;
                              print_empty_mrow();
                              std::cout << draw_between_row();
                              if (help_counter < 6)
-                                  std::cout << draw_help(help_counter) << "\n";
+                                  std::cout << draw_help(help_counter);
+                             std::cout << "\n";
                              help_counter++;
                              sequence_counter++;});
      for (int iter = 0; iter < number_of_empty_rows; iter++)
      {
           print_empty_mrow();
-          std::cout << draw_empty_row() << "\n";
+          std::cout << draw_empty_row();
+          if (help_counter < 6)
+          {
+               std::cout << draw_help(help_counter);
+               help_counter++;
+          }
+          std::cout << "\n";
           print_empty_mrow();
-          std::cout << draw_between_row() << "\n";
+          std::cout << draw_between_row();
+          if (help_counter < 6)
+          {
+               std::cout << draw_help(help_counter);
+               help_counter++;
+          }
+          std::cout << "\n";
      }
 }
 
@@ -154,8 +161,16 @@ void print_mastermind_rules(void)
 
 void print_mastermind_menu(void)
 {
-     std::cout << "\tMastermind the game!";
+     std::cout << "\nMastermind the game!\n";
      std::cout << "\t1) one player";
      std::cout << "\t2) two player";
-     std::cout << "\t3) exit game";
+     std::cout << "\t3) exit game\n";
+}
+
+void print_two_player_options(void)
+{
+     std::cout << "\n\nMastermind the game!\n";
+     std::cout << "\t1) Deathmatch";
+     std::cout << "\t2) tournament";
+     std::cout << "\t3) help\n";
 }

@@ -9,6 +9,7 @@ class canica{
 //		    cout<<"letra"<<endl;
 //		    cin>> k;
 //		    cout<<k;
+
 			if (c > 1 && c <= 6){
 				return c;
 			}else{
